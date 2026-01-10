@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab SO1 - Contenedor</title>
+    <style>
+        body { 
+            font-family: Arial; 
+            text-align: center; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px;
+        }
+        .container { 
+            background: rgba(255,255,255,0.1); 
+            padding: 30px; 
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Aplicación en Docker</h1>
+        <p>Servidor: Nginx</p>
+        <p>Fecha de despliegue: <span id="fecha"></span></p>
+    </div>
+    <script>
+        document.getElementById('fecha').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>
