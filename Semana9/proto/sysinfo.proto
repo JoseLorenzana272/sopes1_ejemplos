@@ -1,0 +1,16 @@
+syntax = "proto3";
+package sysinfo;
+option go_package = "./proto";
+
+service SystemMonitor {
+    rpc GetRamStatus (RamRequest) returns (RamResponse);
+}
+
+message RamRequest {
+    string host_name = 1;
+}
+
+message RamResponse {
+    int32 used_percent = 1;
+    string message = 2;
+}
