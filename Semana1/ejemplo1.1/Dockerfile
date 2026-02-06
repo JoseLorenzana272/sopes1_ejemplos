@@ -1,8 +1,9 @@
-# Usamos Alpine como base
+# Usamos Alpine (Go) como base
 FROM golang:1.25-alpine
 
 # Configuración del entorno
 WORKDIR /app
+# copiar archivos (fuente) del dir actual
 COPY . .
 
 # Instalar dependencias 
