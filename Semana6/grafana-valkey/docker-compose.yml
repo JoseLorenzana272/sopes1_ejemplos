@@ -1,0 +1,21 @@
+services:
+  valkey:
+    image: valkey/valkey:latest
+    container_name: valkey-db
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./valkey-data:/data
+  grafana:
+    build: .
+    container_name: grafana-valkey
+    ports:
+      - "3001:3000"
+    user: "0"
+    volumes:
+      - ./grafana-data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - valkey
