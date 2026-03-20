@@ -183,16 +183,9 @@ kubectl get pods -n mumnk8s -w
 kubectl logs -f deployment/api-rust-deploy -n mumnk8s
 ```
 
-### 20. Qué salida o comportamiento debería ver si todo va bien
+### 20. Qué salida o comportamiento deberían de ver si todo va bien
 
 El Load Balancer responderá 200 OK en los logs de Locust. En GKE, el `TARGET` del HPA subirá de `0%/30%` a algo como `200%/30%`. Luego, verás que `REPLICAS` pasa de 1 a 3.
-
-### 21. Errores comunes reales y cómo resolverlos
-
-- **Error HTTP 502 / 404 persistente desde el Load Balancer:** GCP necesita que el backend responda 200 OK en su ruta raíz (`/`) para el Health Check. Si olvidaste poner esa ruta en Rust, GCP bloqueará el tráfico pensando que el pod está muerto. (El código provisto ya lo incluye).
-- **IP en estado `<pending>` o `Syncing` mucho tiempo:** Es normal en GCP (3 a 5 min). Solución: Paciencia, no vayan a borrar nada ni recrear el YAML a cada rato jojojo.
-- **ImagePullBackOff:** Significa que olvidaron hacer `docker push` o tu repositorio en Docker Hub es privado. Hazlo público para esta demo. (aunque si usan la imagen que está en dockerhub, todo bien)
-
 ---
 
 ### Archivos:
