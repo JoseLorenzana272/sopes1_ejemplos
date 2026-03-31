@@ -28,9 +28,6 @@ gcloud container clusters create mumnk8s-cluster \
 # Instalar el operador
 kubectl apply -f https://github.com/kubevirt/kubevirt/releases/download/v1.7.2/kubevirt-operator.yaml
 
-# Esperar que el operador esté listo
-kubectl rollout status deployment/virt-operator -n kubevirt --timeout=300s
-
 # Parchear para GKE (quita restricciones de nodos maestros)
 kubectl patch deployment virt-operator -n kubevirt --type="json" \
   -p='[{"op": "remove", "path": "/spec/template/spec/affinity"}, {"op": "remove", "path": "/spec/template/spec/tolerations"}]'
