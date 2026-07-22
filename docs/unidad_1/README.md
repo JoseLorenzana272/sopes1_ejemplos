@@ -70,7 +70,7 @@
 
 ## Extras: Ayuda para gestión de contenedores y scripts útiles
 
-En la carpeta `pr1/recursos-adicionales` encontrarás recursos adicionales para la administración de contenedores y automatización de tareas en Linux. A continuación, un resumen de los archivos y su utilidad:
+En la carpeta `docs/recursos-adicionales` encontrarás recursos adicionales para la administración de contenedores y automatización de tareas en Linux. A continuación, un resumen de los archivos y su utilidad:
 
 ### Scripts y manuales incluidos
 
@@ -84,19 +84,19 @@ En la carpeta `pr1/recursos-adicionales` encontrarás recursos adicionales para 
 
 - Para instalar containerd:
   ```bash
-  bash pr1/recursos-adicionales/instalar-containerd.sh
+  bash docs/recursos-adicionales/instalar-containerd.sh
   ```
 - Para limpiar la caché del sistema:
   ```bash
-  bash pr1/recursos-adicionales/limpiar-cache.sh
+  bash docs/recursos-adicionales/limpiar-cache.sh
   ```
 - Para ejecutar un contenedor desde un registro privado:
   ```bash
-  bash pr1/recursos-adicionales/archivo-de-ejecucion.sh
+  bash docs/recursos-adicionales/archivo-de-ejecucion.sh
   ```
 
 ### Guías rápidas
-- Consulta `pr1/recursos-adicionales/zot-intrucciones.md` para levantar tu propio registro privado de imágenes con Zot y configurarlo en Docker.
-- Consulta `pr1/recursos-adicionales/containerd-instrucciones.md` para comandos esenciales de containerd y manejo de imágenes/containers.
+- Consulta `docs/recursos-adicionales/zot-intrucciones.md` para levantar tu propio registro privado de imágenes con Zot y configurarlo en Docker.
+- Consulta `docs/recursos-adicionales/containerd-instrucciones.md` para comandos esenciales de containerd y manejo de imágenes/containers.
 
 Cada archivo contiene instrucciones detalladas y comentarios para facilitar su uso. Se recomienda revisarlos antes de ejecutar los scripts en tu entorno.
