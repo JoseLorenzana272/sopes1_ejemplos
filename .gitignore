@@ -1,5 +1,5 @@
-# Ignorar todas las carpetas
-*/
+# Ignorar todas las carpetas en la raíz
+/*/
 
 # Excepto
 !Semana1/
