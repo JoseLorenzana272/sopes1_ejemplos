@@ -1,3 +1,6 @@
-Semana7/
-Semana8/
-Semana10/
+# Ignorar todas las carpetas
+*/
+
+# Excepto
+!Semana1/
+!docs/
