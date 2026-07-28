@@ -16,4 +16,4 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o server .
 EXPOSE 80
 
 # Comando de ejecución
-CMD ["/app/server"]
+CMD ["/app/server", "echo 'Hola'"]
