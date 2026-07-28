@@ -1,0 +1,20 @@
+version: "3"
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - COLOR_FONDO=#e74c3c
+    depends_on:
+      - redis
+    volumes:
+      - .:/code
+
+  redis:
+    image: "redis:alpine"
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:
