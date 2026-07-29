@@ -6,11 +6,11 @@ import (
 	"net/http"
 )
 
-const TargetIP = "192.168.122.XX" // aqui cambian por la ip de su vm:)
+const TargetIP = "192.168.122.133"
 
 func main() {
-	http.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
-		resp, err := http.Get("http://" + TargetIP + ":8082/datos")
+	http.HandleFunc("/iniciar", func(w http.ResponseWriter, r *http.Request) {
+		resp, err := http.Get("http://" + TargetIP + ":8082/responder")
 		if err != nil {
 			fmt.Fprintf(w, "Error contactando a Pong: %s", err)
 			return
@@ -18,7 +18,7 @@ func main() {
 		defer resp.Body.Close()
 		body, _ := ioutil.ReadAll(resp.Body)
 
-		fmt.Fprintf(w, "Ping desde Docker (VM1): La VM2 me respondió -> %s", string(body))
+		fmt.Fprintf(w, "Ping: Llame a la otra API y me dijo: %s", string(body))
 	})
 
 	fmt.Println("API PING corriendo en puerto 8081")

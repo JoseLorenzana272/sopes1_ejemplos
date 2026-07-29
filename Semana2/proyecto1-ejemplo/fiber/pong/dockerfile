@@ -1,0 +1,35 @@
+# Usa imagen de Go para compilar dandole el tag de builder
+FROM golang:1.25-alpine AS builder
+
+# Directorio de trabajo
+WORKDIR /app
+
+# Copia archivos de dependencias
+COPY go.mod go.sum ./
+
+# Descarga dependencias
+RUN go mod download
+
+# Copia el resto del código
+COPY . .
+
+# Limpia dependencias
+RUN go mod tidy
+
+# Compila la app
+RUN CGO_ENABLED=0 GOOS=linux go build -o pong pong.go
+
+# Usa imagen ligera para ejecutar, en este caso Alpine Linux 3.22 estable
+FROM alpine:3.22
+
+# Directorio de trabajo
+WORKDIR /app
+
+# Copia el binario compilado desde el builder hacia el contenedor final
+COPY --from=builder /app/pong ./
+
+# Expone el puerto 8082
+EXPOSE 8082
+
+# Comando para ejecutar la aplicación (el binario compilado de GO)
+CMD ["./pong"]
