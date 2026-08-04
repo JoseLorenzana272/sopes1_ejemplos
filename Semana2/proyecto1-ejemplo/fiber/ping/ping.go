@@ -10,7 +10,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
-const TargetIP = "192.168.123.41"
+const TargetIP = "192.168.123.82"
 
 func main() {
 	app := fiber.New()
