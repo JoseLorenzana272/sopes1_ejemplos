@@ -1,0 +1,449 @@
+{
+  "uid": "monitoreo_contenedores",
+  "title": "Monitoreo de Contenedores",
+  "timezone": "browser",
+  "refresh": "5s",
+  "panels": [
+    {
+      "id": 1,
+      "type": "text",
+      "title": "",
+      "gridPos": { "h": 2, "w": 24, "x": 0, "y": 0 },
+      "options": {
+        "mode": "markdown",
+        "content": "## CPU por contenedor (%)"
+      }
+    },
+    {
+      "id": 2,
+      "type": "gauge",
+      "title": "nginx - CPU",
+      "gridPos": { "h": 6, "w": 4, "x": 0, "y": 2 },
+      "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 60 },
+              { "color": "red", "value": 85 }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+          "query": "GET cpu:nginx",
+          "refId": "A",
+          "type": "cli"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "gauge",
+      "title": "redis - CPU",
+      "gridPos": { "h": 6, "w": 4, "x": 4, "y": 2 },
+      "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 60 },
+              { "color": "red", "value": 85 }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+          "query": "GET cpu:redis",
+          "refId": "A",
+          "type": "cli"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "gauge",
+      "title": "mysql - CPU",
+      "gridPos": { "h": 6, "w": 4, "x": 8, "y": 2 },
+      "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 60 },
+              { "color": "red", "value": 85 }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+          "query": "GET cpu:mysql",
+          "refId": "A",
+          "type": "cli"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "gauge",
+      "title": "postgres - CPU",
+      "gridPos": { "h": 6, "w": 4, "x": 12, "y": 2 },
+      "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 60 },
+              { "color": "red", "value": 85 }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+          "query": "GET cpu:postgres",
+          "refId": "A",
+          "type": "cli"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "gauge",
+      "title": "node - CPU",
+      "gridPos": { "h": 6, "w": 4, "x": 16, "y": 2 },
+      "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "min": 0,
+          "max": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 60 },
+              { "color": "red", "value": 85 }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+          "query": "GET cpu:node",
+          "refId": "A",
+          "type": "cli"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "text",
+      "title": "",
+      "gridPos": { "h": 2, "w": 24, "x": 0, "y": 8 },
+      "options": {
+        "mode": "markdown",
+        "content": "## Memoria por contenedor (MB)"
+      }
+    },
+    {
+      "id": 8,
+      "type": "gauge",
+      "title": "nginx - Memoria",
+      "gridPos": { "h": 6, "w": 4, "x": 0, "y": 10 },
+      "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "decmbytes",
+          "min": 0,
+          "max": 512,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 300 },
+              { "color": "red", "value": 450 }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+          "query": "GET memory:nginx",
+          "refId": "A",
+          "type": "cli"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "type": "gauge",
+      "title": "redis - Memoria",
+      "gridPos": { "h": 6, "w": 4, "x": 4, "y": 10 },
+      "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "decmbytes",
+          "min": 0,
+          "max": 512,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 300 },
+              { "color": "red", "value": 450 }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+          "query": "GET memory:redis",
+          "refId": "A",
+          "type": "cli"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "type": "gauge",
+      "title": "mysql - Memoria",
+      "gridPos": { "h": 6, "w": 4, "x": 8, "y": 10 },
+      "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "decmbytes",
+          "min": 0,
+          "max": 512,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 300 },
+              { "color": "red", "value": 450 }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+          "query": "GET memory:mysql",
+          "refId": "A",
+          "type": "cli"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "type": "gauge",
+      "title": "postgres - Memoria",
+      "gridPos": { "h": 6, "w": 4, "x": 12, "y": 10 },
+      "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "decmbytes",
+          "min": 0,
+          "max": 512,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 300 },
+              { "color": "red", "value": 450 }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+          "query": "GET memory:postgres",
+          "refId": "A",
+          "type": "cli"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "type": "gauge",
+      "title": "node - Memoria",
+      "gridPos": { "h": 6, "w": 4, "x": 16, "y": 10 },
+      "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "decmbytes",
+          "min": 0,
+          "max": 512,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 300 },
+              { "color": "red", "value": 450 }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+          "query": "GET memory:node",
+          "refId": "A",
+          "type": "cli"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "type": "text",
+      "title": "",
+      "gridPos": { "h": 2, "w": 24, "x": 0, "y": 16 },
+      "options": {
+        "mode": "markdown",
+        "content": "## Estado actual"
+      }
+    },
+    {
+      "id": 14,
+      "type": "stat",
+      "title": "nginx",
+      "gridPos": { "h": 3, "w": 4, "x": 0, "y": 18 },
+      "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            { "type": "value", "options": { "running": { "text": "running", "color": "green" }, "stopped": { "text": "stopped", "color": "red" } } }
+          ]
+        }
+      },
+      "targets": [
+        {
+          "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+          "query": "GET status:nginx",
+          "refId": "A",
+          "type": "cli"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "type": "stat",
+      "title": "redis",
+      "gridPos": { "h": 3, "w": 4, "x": 4, "y": 18 },
+      "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            { "type": "value", "options": { "running": { "text": "running", "color": "green" }, "stopped": { "text": "stopped", "color": "red" } } }
+          ]
+        }
+      },
+      "targets": [
+        {
+          "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+          "query": "GET status:redis",
+          "refId": "A",
+          "type": "cli"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "type": "stat",
+      "title": "mysql",
+      "gridPos": { "h": 3, "w": 4, "x": 8, "y": 18 },
+      "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            { "type": "value", "options": { "running": { "text": "running", "color": "green" }, "stopped": { "text": "stopped", "color": "red" } } }
+          ]
+        }
+      },
+      "targets": [
+        {
+          "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+          "query": "GET status:mysql",
+          "refId": "A",
+          "type": "cli"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "type": "stat",
+      "title": "postgres",
+      "gridPos": { "h": 3, "w": 4, "x": 12, "y": 18 },
+      "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            { "type": "value", "options": { "running": { "text": "running", "color": "green" }, "stopped": { "text": "stopped", "color": "red" } } }
+          ]
+        }
+      },
+      "targets": [
+        {
+          "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+          "query": "GET status:postgres",
+          "refId": "A",
+          "type": "cli"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "type": "stat",
+      "title": "node",
+      "gridPos": { "h": 3, "w": 4, "x": 16, "y": 18 },
+      "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            { "type": "value", "options": { "running": { "text": "running", "color": "green" }, "stopped": { "text": "stopped", "color": "red" } } }
+          ]
+        }
+      },
+      "targets": [
+        {
+          "datasource": { "type": "redis-datasource", "uid": "Valkey" },
+          "query": "GET status:node",
+          "refId": "A",
+          "type": "cli"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 36
+}

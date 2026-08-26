@@ -1,0 +1,25 @@
+services:
+  valkey:
+    image: valkey/valkey:latest
+    container_name: valkey-db
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./valkey-data:/data
+  grafana:
+    build: .
+    container_name: grafana-valkey
+    ports:
+      - "3001:3000"
+    user: "0"
+    volumes:
+      - ./grafana-data:/var/lib/grafana
+      # Monta la carpeta local 'provisioning' dentro de Grafana para cargar configuraciones automáticamente
+      - ./provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      # Instala el plugin al iniciar el contenedor, dentro del volumen persistente
+      - GF_INSTALL_PLUGINS=redis-datasource
+    depends_on:
+      - valkey

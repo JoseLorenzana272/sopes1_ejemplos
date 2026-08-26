@@ -1,0 +1,11 @@
+# Configuración para que Grafana cargue tableros desde el sistema de archivos
+apiVersion: 1
+providers:
+  - name: "default" # Nombre del proveedor de tableros
+    orgId: 1 # ID de la organización por defecto en Grafana
+    folder: "" # Carpeta destino (vacío significa carpeta principal)
+    type: file # Indica que los tableros se cargarán desde archivos físicos
+    disableDeletion: false # Permite eliminar los tableros desde la interfaz web
+    updateIntervalSeconds: 10 # Segundos que Grafana espera para revisar si el archivo JSON cambió
+    options:
+      path: /etc/grafana/provisioning/dashboards # Ruta en el contenedor donde buscará los archivos JSON

@@ -1,0 +1,10 @@
+# Configuración del origen de datos para conectar Grafana con Valkey
+apiVersion: 1
+datasources:
+  - name: Valkey # Nombre visible en la interfaz de Grafana
+    uid: Valkey # Identificador único para el tablero
+    type: redis-datasource # Plugin utilizado para la conexión
+    access: proxy # Grafana actúa como intermediario para las peticiones
+    url: redis://valkey-db:6379 # Dirección interna del contenedor de base de datos
+    isDefault: true # Marca este origen como el predeterminado
+    editable: true # Permite modificar la configuración desde la web
