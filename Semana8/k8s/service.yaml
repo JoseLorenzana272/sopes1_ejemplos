@@ -1,0 +1,16 @@
+# Servicio interno ClusterIP para balancear trafico hacia los pods de Rust
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-rust-service
+  namespace: mumnk8s
+spec:
+  # Enruta hacia pods con la etiqueta app: api-rust
+  selector:
+    app: api-rust
+  ports:
+    # Puerto expuesto en la red interna del cluster
+    - port: 80
+      # Puerto de escucha del contenedor
+      targetPort: 8080
+      protocol: TCP

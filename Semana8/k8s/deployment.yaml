@@ -1,0 +1,35 @@
+# Despliegue de la API
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-rust-deploy
+  namespace: mumnk8s
+spec:
+  # Cantidad inicial de pods a ejecutar
+  replicas: 1
+  # Selector para asociar los pods gestionados por este Deployment
+  selector:
+    matchLabels:
+      app: api-rust
+  # Plantilla para la creacion de los pods
+  template:
+    metadata:
+      labels:
+        app: api-rust
+    spec:
+      containers:
+        - name: api-rust
+          # Imagen del contenedor publicada en Docker Hub
+          image: elianreyes/api-rust:v1
+          imagePullPolicy: Always
+          ports:
+            # Puerto interno expuesto por la aplicacion
+            - containerPort: 8080
+          # Asignacion de recursos requerida para el monitoreo y calculo del HPA
+          resources:
+            requests:
+              cpu: "10m"
+              memory: "32Mi"
+            limits:
+              cpu: "50m"
+              memory: "64Mi"

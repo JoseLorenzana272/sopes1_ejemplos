@@ -1,0 +1,14 @@
+# Gateway para aprovisionar un Balanceador de Carga HTTP externo en Google Cloud
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  name: api-gateway
+  namespace: mumnk8s
+spec:
+  # Clase de Gateway nativa de GKE que crea un Cloud Load Balancer L7 global administrado
+  gatewayClassName: gke-l7-global-external-managed
+  listeners:
+    # Punto de escucha HTTP en el puerto publico 80
+    - name: http
+      protocol: HTTP
+      port: 80

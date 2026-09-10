@@ -1,0 +1,6 @@
+# Definicion del espacio de nombres para aislar los recursos del proyecto
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mumnk8s
+  

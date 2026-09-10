@@ -1,0 +1,23 @@
+# Configuracion de autoescalado horizontal de pods basado en consumo de CPU
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: api-rust-hpa
+  namespace: mumnk8s
+spec:
+  # Rango de replicas permitidas para el despliegue
+  minReplicas: 1
+  maxReplicas: 3
+  # Recurso objetivo a escalar
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: api-rust-deploy
+  metrics:
+    # Escala cuando el uso promedio de CPU supere el 30% del request solicitado
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 30
