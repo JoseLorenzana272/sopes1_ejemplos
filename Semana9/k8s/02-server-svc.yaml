@@ -1,0 +1,19 @@
+# Service ClusterIP para comunicacion interna con el servidor gRPC
+apiVersion: v1
+kind: Service
+metadata:
+  # Nombre del servicio que define la entrada DNS interna
+  name: go-server-svc
+  # Namespace asignado
+  namespace: mumnk8s
+spec:
+  # Selector para dirigir el trafico a los pods del servidor
+  selector:
+    app: go-server
+  ports:
+    # Protocolo de red
+    - protocol: TCP
+      # Puerto del servicio accesible dentro del cluster
+      port: 50051
+      # Puerto destino en el contenedor del pod
+      targetPort: 50051

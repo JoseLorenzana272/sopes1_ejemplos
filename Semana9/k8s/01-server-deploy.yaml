@@ -1,0 +1,29 @@
+# Deployment para el servidor gRPC en Go
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-server-deploy
+  # Namespace asignado
+  namespace: mumnk8s
+spec:
+  # Numero de replicas deseadas
+  replicas: 1
+  # Selector para identificar los pods administrados
+  selector:
+    matchLabels:
+      app: go-server
+  # Plantilla de creacion de los pods
+  template:
+    metadata:
+      labels:
+        app: go-server
+    spec:
+      containers:
+      - name: go-server
+        # Imagen del servidor en Docker Hub
+        image: joselorenzana272/go-server:v2
+        # Politica de descarga de imagen
+        imagePullPolicy: Always
+        ports:
+        # Puerto gRPC expuesto por el contenedor
+        - containerPort: 50051

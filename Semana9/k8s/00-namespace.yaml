@@ -1,0 +1,6 @@
+# Definicion del namespace para aislar los recursos del ejemplo
+apiVersion: v1
+kind: Namespace
+metadata:
+  # Nombre del namespace
+  name: mumnk8s

@@ -1,0 +1,37 @@
+// Version de sintaxis de Protocol Buffers
+syntax = "proto3";
+
+// Espacio de nombres del paquete
+package wartweets;
+
+// Ruta del paquete de salida para la generacion de codigo en Go
+option go_package = "./proto";
+
+// Estructura de la peticion del reporte
+message WarReportRequest {
+    Countries country = 1;         // Pais que envia el reporte
+    int32 warplanes_in_air = 2;    // Cantidad de aviones activos en el aire
+    int32 warships_in_water = 3;   // Cantidad de barcos activos en el agua
+    string timestamp = 4;          // Marca de tiempo del reporte
+}
+
+// Listado de paises disponibles
+enum Countries {
+    countries_unknown = 0; // Valor por defecto
+    usa = 1;               // Estados Unidos
+    rus = 2;               // Rusia
+    chn = 3;               // China
+    esp = 4;               // Espana
+    gmt = 5;               // Guatemala
+}
+
+// Estructura de la respuesta devuelta por el servidor
+message WarReportResponse {
+    string status = 1; // Estado devuelto por el servicio
+}
+
+// Definicion del servicio gRPC
+service WarReportService {
+    // Metodo RPC para enviar el reporte y recibir acuse de recibo
+    rpc SendReport (WarReportRequest) returns (WarReportResponse);
+}

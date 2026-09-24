@@ -1,0 +1,26 @@
+# Deployment para el cliente gRPC en Go
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-client-deploy
+  # Namespace asignado
+  namespace: mumnk8s
+spec:
+  # Numero de replicas deseadas
+  replicas: 1
+  # Selector para identificar los pods administrados
+  selector:
+    matchLabels:
+      app: go-client
+  # Plantilla de creacion de los pods
+  template:
+    metadata:
+      labels:
+        app: go-client
+    spec:
+      containers:
+      - name: go-client
+        # Imagen del cliente en Docker Hub
+        image: joselorenzana272/go-client:v2
+        # Politica de descarga de imagen
+        imagePullPolicy: Always
