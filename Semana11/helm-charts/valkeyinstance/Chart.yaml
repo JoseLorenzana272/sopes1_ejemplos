@@ -1,0 +1,6 @@
+apiVersion: v2
+name: valkeyinstance
+description: Chart mínimo de Valkey (StatefulSet + Service + PVC)
+type: application
+version: 0.1.0
+appVersion: "8.0"

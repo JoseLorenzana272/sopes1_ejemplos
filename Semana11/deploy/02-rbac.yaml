@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mumn
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: valkey-operator
+  namespace: mumn
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: valkey-operator
+  namespace: mumn
+rules:
+  # El propio CR
+  - apiGroups: ["cache.example.com"]
+    resources: ["valkeyinstances", "valkeyinstances/status", "valkeyinstances/finalizers"]
+    verbs: ["*"]
+  # Lo que el chart crea (el operator debe poder crear/borrar todo lo del chart)
+  - apiGroups: ["apps"]
+    resources: ["statefulsets"]
+    verbs: ["*"]
+  - apiGroups: [""]
+    resources: ["services", "persistentvolumeclaims", "configmaps", "secrets", "events"]
+    verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: valkey-operator
+  namespace: mumn
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: valkey-operator
+subjects:
+  - kind: ServiceAccount
+    name: valkey-operator
+    namespace: mumn

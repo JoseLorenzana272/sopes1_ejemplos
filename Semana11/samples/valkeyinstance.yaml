@@ -1,0 +1,10 @@
+apiVersion: cache.example.com/v1alpha1
+kind: ValkeyInstance
+metadata:
+  name: valkey
+  namespace: mumn
+spec:                       # todo lo que pongan aquí sobreescribe values.yaml
+  replicaCount: 1
+  maxmemory: 128mb
+  persistence:
+    size: 2Gi

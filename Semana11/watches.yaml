@@ -1,0 +1,5 @@
+# Le dice al helm-operator: "cuando veas un CR de este kind, instala este chart"
+- group: cache.example.com
+  version: v1alpha1
+  kind: ValkeyInstance
+  chart: helm-charts/valkeyinstance

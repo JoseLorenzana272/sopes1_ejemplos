@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: daredevil
+  namespace: marvel
+spec: 
+  containers:
+    - name: daredevil-container
+      image: nginx

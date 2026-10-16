@@ -1,0 +1,5 @@
+export PROJECT_ID="tu-proyecto-gcp"
+export ZONE="us-central1-a"
+export CLUSTER="mumn-cluster"
+export DOCKER_USER="tu_usuario_dockerhub"
+export OP_VERSION="v1.37.0"

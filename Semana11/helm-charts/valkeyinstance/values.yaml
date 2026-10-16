@@ -1,0 +1,27 @@
+# Estos valores se sobreescriben con el "spec" del Custom Resource
+image:
+  repository: valkey/valkey      # en el proyecto: <IP-ZOT>:5000/valkey
+  tag: "8.0"
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+persistence:
+  enabled: true
+  size: 1Gi
+  # storageClass: ""             # vacío = default de GKE (standard-rwo)
+
+# Recomendación del proyecto: evitar saturar memoria
+maxmemory: 128mb
+maxmemoryPolicy: allkeys-lru
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 300m
+    memory: 256Mi
+
+service:
+  port: 6379

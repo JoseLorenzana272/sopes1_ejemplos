@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: valkey-operator
+  namespace: mumn
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: valkey-operator
+  template:
+    metadata:
+      labels:
+        app: valkey-operator
+    spec:
+      serviceAccountName: valkey-operator
+      # imagePullSecrets:            # si Zot requiere autenticación
+      #   - name: zot-creds
+      containers:
+        - name: operator
+          image: joselorenzana272/valkey-operator:v0.1.0
+          args:
+            - run
+            - --watches-file=./watches.yaml
+            - --namespace=mumn          # limita el watch a este namespace (coincide con el Role)
+          resources:
+            requests: { cpu: 50m, memory: 64Mi }
+            limits:   { cpu: 200m, memory: 128Mi }
